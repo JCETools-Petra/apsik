@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/dropzone.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('assets/backend/css/media-uploader.css')); ?>"><?php /**PATH /home/apsx2353/public_html/@core/resources/views/backend/partials/media-upload/style.blade.php ENDPATH**/ ?>
