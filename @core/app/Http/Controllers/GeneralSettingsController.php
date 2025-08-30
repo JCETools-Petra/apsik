@@ -895,29 +895,29 @@ class GeneralSettingsController extends Controller
         $env_val['PAYPAL_LOCALE'] = 'en_GB';
         $env_val['PAYPAL_VALIDATE_SSL'] = $request->paypal_validate_ssl ? : 'false';
 
-        $env_val['PAYSTACK_PUBLIC_KEY'] = $request->paystack_public_key ?: 'pk_test_081a8fcd9423dede2de7b4c3143375b5e5415290';
-        $env_val['PAYSTACK_SECRET_KEY'] = $request->paystack_secret_key ?: '***REMOVED***';
+        $env_val['PAYSTACK_PUBLIC_KEY'] = $request->paystack_public_key ?: '';
+        $env_val['PAYSTACK_SECRET_KEY'] = $request->paystack_secret_key ?: '';
         $env_val['PAYSTACK_TEST_MODE'] = $request->paystack_test_mode ? true : false;
 
         $env_val['MERCHANT_EMAIL'] = $request->paystack_merchant_email ?: 'example@gmail.com';
-        $env_val['MOLLIE_KEY'] = $request->mollie_public_key ?: 'test_SMWtwR6W48QN2UwFQBUqRDKWhaQEvw';
+        $env_val['MOLLIE_KEY'] = $request->mollie_public_key ?: '';
         $env_val['MOLLIE_TEST_MODE'] = $request->mollie_test_mode ? true : false;
 
-        $env_val['FLW_PUBLIC_KEY'] = $request->flw_public_key ?: 'FLWPUBK_TEST-86cce2ec43c63e09a517290a8347fcab-X';
-        $env_val['FLW_SECRET_KEY'] = $request->flw_secret_key ?: 'FLWSECK_TEST-d37a42d8917db84f1b2f47c125252d0a-X';
+        $env_val['FLW_PUBLIC_KEY'] = $request->flw_public_key ?: '';
+        $env_val['FLW_SECRET_KEY'] = $request->flw_secret_key ?: '';
         $env_val['FLW_SECRET_HASH'] = $request->flw_secret_hash ?: 'fundorex';
         $env_val['FLW_TEST_MODE'] = $request->flutterwave_test_mode ? true: false;
 
-        $env_val['RAZORPAY_API_KEY'] = $request->razorpay_api_key ? : 'rzp_test_SXk7LZqsBPpAkj';
-        $env_val['RAZORPAY_API_SECRET'] = $request->razorpay_api_secret ? : 'Nenvq0aYArtYBDOGgmMH7JNv';
+        $env_val['RAZORPAY_API_KEY'] = $request->razorpay_api_key ? : '';
+        $env_val['RAZORPAY_API_SECRET'] = $request->razorpay_api_secret ? : '';
         $env_val['RAZORPAY_TESTMODE'] = $request->razorpay_test_mode ? true : false;
 
-        $env_val['STRIPE_PUBLIC_KEY'] = $request->stripe_public_key ? : 'pk_test_51GwS1SEmGOuJLTMsIeYKFtfAT3o3Fc6IOC7wyFmmxA2FIFQ3ZigJ2z1s4ZOweKQKlhaQr1blTH9y6HR2PMjtq1Rx00vqE8LO0x';
-        $env_val['STRIPE_SECRET_KEY'] = $request->stripe_secret_key ? : '***REMOVED***';
+        $env_val['STRIPE_PUBLIC_KEY'] = $request->stripe_public_key ? : '';
+        $env_val['STRIPE_SECRET_KEY'] = $request->stripe_secret_key ? : '';
         $env_val['STRIPE_TEST_MODE'] = $request->stripe_test_mode ? true : false;
 
-        $env_val['PAYTM_MERCHANT_ID'] = $request->paytm_merchant_mid ?: 'Digita57697814558795';
-        $env_val['PAYTM_MERCHANT_KEY'] = '"' . $request->paytm_merchant_key . '"' ?: 'dv0XtmsPYpewNag&';
+        $env_val['PAYTM_MERCHANT_ID'] = $request->paytm_merchant_mid ?: '';
+        $env_val['PAYTM_MERCHANT_KEY'] = '"' . $request->paytm_merchant_key . '"' ?: '&';
         $env_val['PAYTM_MERCHANT_WEBSITE'] = '"' . $request->paytm_merchant_website . '"' ?: 'WEBSTAGING';
         $env_val['PAYTM_CHANNEL'] = '"' . $request->paytm_channel . '"' ?: 'WEB';
         $env_val['PAYTM_INDUSTRY_TYPE'] = '"' . $request->paytm_industry_type . '"' ? : 'Retail';
@@ -941,9 +941,9 @@ class GeneralSettingsController extends Controller
         $env_val['BRL_EXCHANGE_RATE'] = $request->$brl_currency_filed_name ?? '5.70';
         $env_val['MYR_EXCHANGE_RATE'] = $request->$myr_currency_filed_name ?? '50';
 
-        $env_val['MIDTRANS_MERCHANT_ID'] = $request->midtrans_merchant_id ? : 'G770543580';
-        $env_val['MIDTRANS_SERVER_KEY'] =  $request->midtrans_server_key ? : 'SB-Mid-server-9z5jztsHyYxEdSs7DgkNg2on';
-        $env_val['MIDTRANS_CLIENT_KEY'] =  $request->midtrans_client_key ? : 'SB-Mid-client-iDuy-jKdZHkLjL_I';
+        $env_val['MIDTRANS_MERCHANT_ID'] = $request->midtrans_merchant_id ? : '';
+        $env_val['MIDTRANS_SERVER_KEY'] =  $request->midtrans_server_key ? : '';
+        $env_val['MIDTRANS_CLIENT_KEY'] =  $request->midtrans_client_key ? : '';
         $env_val['MIDTRANS_ENVIRONTMENT'] =  $request->midtrans_test_mode ? true : false;
 
 
@@ -954,38 +954,38 @@ class GeneralSettingsController extends Controller
         $env_val['PF_MERCHANT_ENV'] = $request->payfast_test_mode  ? true : false;
 
         $env_val['CASHFREE_TEST_MODE'] = $request->cashfree_test_mode ? true : false;
-        $env_val['CASHFREE_APP_ID'] =  $request->cashfree_app_id ? : '94527832f47d6e74fa6ca5e3c72549';
-        $env_val['CASHFREE_SECRET_KEY'] =  $request->cashfree_secret_key ? : 'ec6a3222018c676e95436b2e26e89c1ec6be2830';
+        $env_val['CASHFREE_APP_ID'] =  $request->cashfree_app_id ? : '';
+        $env_val['CASHFREE_SECRET_KEY'] =  $request->cashfree_secret_key ? : '';
 
-        $env_val['INSTAMOJO_CLIENT_ID'] = $request->instamojo_client_id ? : 'test_nhpJ3RvWObd3uryoIYF0gjKby5NB5xu6S9Z';
-        $env_val['INSTAMOJO_CLIENT_SECRET'] =  $request->instamojo_client_secret ? : 'test_iZusG4P35maQVPTfqutbCc6UEbba3iesbCbrYM7zOtDaJUdbPz76QOnBcDgblC53YBEgsymqn2sx3NVEPbl3b5coA3uLqV1ikxKquOeXSWr8Ruy7eaKUMX1yBbm';
+        $env_val['INSTAMOJO_CLIENT_ID'] = $request->instamojo_client_id ? : '';
+        $env_val['INSTAMOJO_CLIENT_SECRET'] =  $request->instamojo_client_secret ? : '';
         $env_val['INSTAMOJO_USERNAME'] =  $request->instamojo_username ? : '';
         $env_val['INSTAMOJO_PASSWORD'] =  $request->instamojo_password ? : '';
         $env_val['INSTAMOJO_TEST_MODE'] =  $request->instamojo_test_mode ? true : false;
 
-        $env_val['MERCADO_PAGO_CLIENT_ID'] = $request->marcado_pago_client_id ? : 'TEST-0a3cc78a-57bf-4556-9dbe-2afa06347769';
-        $env_val['MERCADO_PAGO_CLIENT_SECRET'] = $request->marcado_pago_client_secret ? : 'TEST-4644184554273630-070813-7d817e2ca1576e75884001d0755f8a7a-786499991';
+        $env_val['MERCADO_PAGO_CLIENT_ID'] = $request->marcado_pago_client_id ? : '';
+        $env_val['MERCADO_PAGO_CLIENT_SECRET'] = $request->marcado_pago_client_secret ? : '';
         $env_val['MERCADO_PAGO_TEST_MODE'] = $request->marcadopago_test_mode ? true : false;
 
         $env_val['SQUAREUP_ACCESS_TOKEN'] = $request->squareup_access_token ;
         $env_val['SQUAREUP_LOCATION_ID'] = $request->squareup_location_id;
         $env_val['SQUAREUP_ACCESS_TEST_MODE'] = $request->squareup_test_mode ? true : false;
 
-        $env_val['CINETPAY_API_KEY'] = $request->cinetpay_api_key ??  '12912847765bc0db748fdd44.40081707';
-        $env_val['CINETPAY_SITE_ID'] = $request->cinetpay_site_id ?? '445160';
+        $env_val['CINETPAY_API_KEY'] = $request->cinetpay_api_key ??  '';
+        $env_val['CINETPAY_SITE_ID'] = $request->cinetpay_site_id ?? '';
         $env_val['CINETPAY_TEST_MODE'] = $request->cinetpay_test_mode ? true : false;
 
 
         $env_val['PAYTABS_CURRENCY'] = $request->pay_tabs_currency ??  'USD';
-        $env_val['PAYTABS_PROFILE_ID'] = $request->pay_tabs_profile_id ?? '96698';
+        $env_val['PAYTABS_PROFILE_ID'] = $request->pay_tabs_profile_id ?? '';
         $env_val['PAYTABS_REGION'] = $request->pay_tabs_region ?? 'GLOBAL';
-        $env_val['PAYTABS_SERVER_KEY'] = $request->pay_tabs_server_key ?? 'SKJNDNRHM2-JDKTZDDH2N-H9HLMJNJ2L';
+        $env_val['PAYTABS_SERVER_KEY'] = $request->pay_tabs_server_key ?? '';
         $env_val['PAYTABS_TEST_MODE'] = $request->paytabs_test_mode ? true : false;
 
-        $env_val['BILLPLZ_KEY'] = $request->billplz_key ??  'b2ead199-e6f3-4420-ae5c-c94f1b1e8ed6';
+        $env_val['BILLPLZ_KEY'] = $request->billplz_key ??  '';
         $env_val['BILLPLZ_VERSION'] = $request->billplz_version ?? 'v4';
-        $env_val['BILLPLZ_X_SIGNATURE'] = $request->billplz_x_signature ?? 'S-HDXHxRJB-J7rNtoktZkKJg';
-        $env_val['BILLPLZ_COLLECTION_NAME'] = $request->billplz_collection_name ?? 'kjj5ya006';
+        $env_val['BILLPLZ_X_SIGNATURE'] = $request->billplz_x_signature ?? '';
+        $env_val['BILLPLZ_COLLECTION_NAME'] = $request->billplz_collection_name ?? '';
         $env_val['BILLPLZ_TEST_MODE'] = $request->billplz_test_mode ? true : false;
 
 

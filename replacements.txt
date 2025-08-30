@@ -1,0 +1,2 @@
+regex:sk_(test|live)_[0-9a-zA-Z]{24,}
+REDACTED_STRIPE_SECRET
