@@ -52,15 +52,15 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     });
 
     /*==============================================
-        FRONTEND ROUTES: COURSE MODULE
+      FRONTEND ROUTES: COURSE MODULE
     ==============================================*/
     Route::group(['namespace' => 'Frontend','moduleCheck:course_module_status'],function (){
-         $course_page_slug =  get_static_option('courses_page_slug') ?? 'course';
+       $course_page_slug =  get_static_option('courses_page_slug') ?? 'course';
 
         //courses
         Route::get($course_page_slug, 'CourseController@page')->name('frontend.course');
         Route::get( $course_page_slug.'/{slug?}/{id}', 'CourseController@single')->name('frontend.course.single');
-        Route::get( $course_page_slug.'-category/{id}/{slug?}', 'CourseController@category')->name('frontend.course.category');
+        Route::get( $course_page_slug.'-category/{id}/{any?}', 'CourseController@category')->name('frontend.course.category');
         Route::get( $course_page_slug.'-enroll/{id}', 'CourseController@enroll')->name('frontend.course.enroll');
         Route::post($course_page_slug.'/course-enroll', 'CourseEnrollController@enroll_now')->name('frontend.course.enroll.submit');
         Route::get( $course_page_slug.'-{course_id}-lesson/{id}', 'CourseController@lesson_preview')->name('frontend.course.lesson');
@@ -95,9 +95,6 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     });
 
 });
-
-
-
 
 /*==============================================
     FRONTEND ROUTES: APPOINTMENT MODULE
@@ -134,7 +131,6 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::post('/appointment-billplz-ipn','Frontend\AppointmentBookingController@billplz_ipn')->name('frontend.appointment.billplz.ipn');
     Route::post('/appointment-zitopay-ipn','Frontend\AppointmentBookingController@zitopay_ipn')->name('frontend.appointment.zitopay.ipn');
     Route::post('/appointment-toyyibpay-ipn','Frontend\AppointmentBookingController@toyyibpay_ipn')->name('frontend.appointment.toyyibpay.ipn');
-    Route::post('/appointment-pagalipay-ipn','Frontend\AppointmentBookingController@pagalipay_ipn')->name('frontend.appointment.pagalipay.ipn');
     Route::get('/appointment-authorizenet-ipn','Frontend\AppointmentBookingController@authorizenet_ipn')->name('frontend.appointment.authorizenet.ipn');
 
     /* appointment booking time check available for booking or not.. */
@@ -188,7 +184,6 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::post('/donation-billplz-ipn','DonationLogController@billplz_ipn')->name('frontend.donation.billplz.ipn');
     Route::post('/donation-zitopay-ipn','DonationLogController@zitopay_ipn')->name('frontend.donation.zitopay.ipn');
     Route::post('/donation-toyyibpay-ipn','DonationLogController@toyyibpay_ipn')->name('frontend.donation.toyyibpay.ipn');
-    Route::post('/donation-pagalipay-ipn','DonationLogController@pagalipay_ipn')->name('frontend.donation.pagalipay.ipn');
     Route::get('/donation-authorizenet-ipn','DonationLogController@authorizenet_ipn')->name('frontend.donation.authorizenet.ipn');
 });
 
@@ -279,7 +274,6 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::post('/event-billplz-ipn','EventPaymentLogsController@billplz_ipn')->name('frontend.event.billplz.ipn');
     Route::post('/event-zitopay-ipn','EventPaymentLogsController@zitopay_ipn')->name('frontend.event.zitopay.ipn');
     Route::post('/event-toyyibpay-ipn','EventPaymentLogsController@toyyibpay_ipn')->name('frontend.event.toyyibpay.ipn');
-    Route::post('/event-pagalipay-ipn','EventPaymentLogsController@pagalipay_ipn')->name('frontend.event.pagalipay.ipn');
     Route::get('/event-authorizenet-ipn','EventPaymentLogsController@authorizenet_ipn')->name('frontend.event.authorizenet.ipn');
 
     //event booking
@@ -296,7 +290,7 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     $career_with_us_page_slug = !empty(get_static_option('career_with_us_page_slug')) ? get_static_option('career_with_us_page_slug') : 'jobs';
     Route::get($career_with_us_page_slug, 'FrontendController@jobs')->name('frontend.jobs');
     Route::get( $career_with_us_page_slug.'/{slug}', 'FrontendController@jobs_single')->name('frontend.jobs.single');
-    Route::get( $career_with_us_page_slug.'-category/{id}/{any}', 'FrontendController@jobs_category')->name('frontend.jobs.category');
+    Route::get( $career_with_us_page_slug.'/category/{id}/{any}', 'FrontendController@jobs_category')->name('frontend.jobs.category');
     Route::get($career_with_us_page_slug.'-search', 'FrontendController@jobs_search')->name('frontend.jobs.search');
 
     Route::get('/apply/{id}', 'FrontendController@jobs_apply')->name('frontend.jobs.apply');
@@ -321,12 +315,11 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::post('/job-billplz-ipn','JobPaymentController@billplz_ipn')->name('frontend.job.billplz.ipn');
     Route::post('/job-zitopay-ipn','JobPaymentController@zitopay_ipn')->name('frontend.job.zitopay.ipn');
     Route::post('/job-toyyibpay-ipn','JobPaymentController@toyyibpay_ipn')->name('frontend.job.toyyibpay.ipn');
-    Route::post('/job-pagalipay-ipn','JobPaymentController@pagalipay_ipn')->name('frontend.job.pagalipay.ipn');
     Route::get('/job-authorizenet-ipn','JobPaymentController@authorizenet_ipn')->name('frontend.job.authorizenet.ipn');
 
     /*-------------------------------------------------
-       JOB MODULE: PAYMENT SUCCESS/CANCEL ROUTES
-   ----------------------------------------------------*/
+        JOB MODULE: PAYMENT SUCCESS/CANCEL ROUTES
+    ----------------------------------------------------*/
     Route::get('/job-success/{id}', 'FrontendController@job_payment_success')->name('frontend.job.payment.success');
     Route::get('/job-cancel/{id}', 'FrontendController@job_payment_cancel')->name('frontend.job.payment.cancel');
 
@@ -357,7 +350,7 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
 
 
     /*---------------------------------
-     PRICE PLAN PAYMENT IPN  ROUTES
+      PRICE PLAN PAYMENT IPN  ROUTES
     ---------------------------------*/
     Route::get('/price-plan-paypal-ipn','PaymentLogController@paypal_ipn')->name('frontend.price.plan.paypal.ipn');
     Route::post('/price-plan-paytm-ipn','PaymentLogController@paytm_ipn')->name('frontend.price.plan.paytm.ipn');
@@ -382,7 +375,7 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
 
     /*---------------------------------
       INVOICE ROUTES
-     ---------------------------------*/
+      ---------------------------------*/
     Route::post('/products-user/generate-invoice', 'FrontendController@generate_invoice')->name('frontend.product.invoice.generate');
     Route::post('/donation-user/generate-invoice', 'FrontendController@generate_donation_invoice')->name('frontend.donation.invoice.generate');
     Route::post('/event-user/generate-invoice', 'FrontendController@generate_event_invoice')->name('frontend.event.invoice.generate');
@@ -414,8 +407,8 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::get( $service_page_slug.'/{slug}', 'FrontendController@services_single_page')->name('frontend.services.single');
 
     /*--------------------------------------
-         FRONTEND: OTHERS ROUTES
-     ---------------------------------------*/
+        FRONTEND: OTHERS ROUTES
+      ---------------------------------------*/
     Route::get('/' . $donor_page_slug, 'FrontendController@donor_list')->name('frontend.donor.list');
     Route::get('/' . $about_page_slug, 'FrontendController@about_page')->name('frontend.about');
     Route::get('/' . $faq_page_slug, 'FrontendController@faq_page')->name('frontend.faq');
@@ -425,8 +418,8 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::get('/' . $quote_page_slug, 'FrontendController@request_quote')->name('frontend.request.quote');
 
     /*--------------------------------------
-         FRONTEND: CASE STUDY/ WORKS ROUTES
-     ---------------------------------------*/
+        FRONTEND: CASE STUDY/ WORKS ROUTES
+      ---------------------------------------*/
         Route::get($work_page_slug, 'FrontendController@work_page')->name('frontend.work');
         Route::get( $work_page_slug.'/{slug}', 'FrontendController@work_single_page')->name('frontend.work.single');
         Route::get( $work_page_slug.'/category/{id}/{any?}', 'FrontendController@category_wise_works_page')->name('frontend.works.category');
@@ -471,6 +464,9 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     Route::post('/request-estimate', 'FrontendFormController@send_estimate_message')->name('frontend.estimate.message');
     Route::get('/home/{id}', 'FrontendController@home_page_change')->name('frontend.homepage.demo');
 
+    // Rute kartu anggota yang salah, akan dihapus
+    // Route::get('/membership-card/{id}', 'MembershipCardController@generateCard')->name('user.membership.card');
+
 });
 
 
@@ -478,6 +474,9 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'maintains_
     USER DASHBOARD
 -----------------------------------*/
 Route::prefix('user-home')->middleware(['userEmailVerify', 'setlang:frontend', 'globalVariable', 'maintains_mode'])->group(function () {
+    Route::get('/', 'UserDashboardController@user_index')->name('user.home');
+    Route::get('/membership-cards', 'UserDashboardController@membership_cards')->name('user.home.membership.cards');
+    Route::get('/membership-card/download/{id}', 'MembershipCardController@generateCard')->name('user.membership.card.generate');
     Route::get('/', 'UserDashboardController@user_index')->name('user.home');
     Route::get('/download/file/{id}', 'UserDashboardController@download_file')->name('user.dashboard.download.file');
     Route::get('/package-orders', 'UserDashboardController@package_orders')->name('user.home.package.order');
@@ -507,7 +506,6 @@ Route::prefix('user-home')->middleware(['userEmailVerify', 'setlang:frontend', '
     Route::post('support-ticket/priority-change', 'UserDashboardController@support_ticket_priority_change')->name('user.dashboard.support.ticket.priority.change');
     Route::post('support-ticket/status-change', 'UserDashboardController@support_ticket_status_change')->name('user.dashboard.support.ticket.status.change');
     Route::post('support-ticket/message', 'UserDashboardController@support_ticket_message')->name('user.dashboard.support.ticket.message');
-
     /* EVENT TICKET QR CODE GENERATOR */
     Route::post('/event-user/generate-ticket', 'UserDashboardController@generate_event_ticket')->name('user.dashboard.event.ticket.generate');
 });
@@ -515,7 +513,7 @@ Route::prefix('user-home')->middleware(['userEmailVerify', 'setlang:frontend', '
 
 
 /*------------------------------------
-  ADMIN LOGIN ROUTE
+    ADMIN LOGIN ROUTE
 -------------------------------------*/
 Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'HtmlMinifier']], function () {
 
@@ -530,6 +528,7 @@ Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'HtmlMinifi
     Route::post('/subscribe-newsletter', 'FrontendController@subscribe_newsletter')->name('frontend.subscribe.newsletter');
     Route::post('/contact-message', 'FrontendFormController@send_contact_message')->name('frontend.contact.message');
     Route::post('/place-order', 'FrontendFormController@send_order_message')->name('frontend.order.message');
+     Route::get('/membership-card/download/{id}', 'AdminDashboardController@generateUserMembershipCard')->name('admin.membership.card.generate');
 });
 
 
@@ -541,4 +540,3 @@ require_once __DIR__.'/admin.php';
 Route::group(['middleware' => ['setlang:frontend', 'globalVariable', 'HtmlMinifier']], function () {
     Route::get('/{slug}', 'FrontendController@dynamic_single_page')->name('frontend.dynamic.page');
 });
-
